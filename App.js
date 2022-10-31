@@ -25,7 +25,9 @@ export default function App() {
 		 newArray.splice(index, 1);
 		  setTarefas(newArray);
 		}
+		kfsm
 	}*/
+
 
 	return (
 		<SafeAreaView style={styles.container}>
