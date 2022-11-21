@@ -4,7 +4,7 @@ import { useState } from "react";
 import { ImageBackground } from "react-native";
 import close from "../assets/close.png";
 
-export default function Tarefa(props) {
+export default function Tarefa({nome, func}) {
     const [checked, setChecked] = useState(false);
 
     return (
@@ -17,8 +17,8 @@ export default function Tarefa(props) {
             uncheckedColor="red"
             checked={checked}
             onPress={() => setChecked(!checked)}></CheckBox>
-            <Text style={[styles.uncheckedText, checked? styles.checkedText : null]}>{props.nome}</Text>
-            <TouchableOpacity onPress={() => (props.func(props.id))}>
+            <Text style={[styles.uncheckedText, checked? styles.checkedText : null]}>{nome}</Text>
+            <TouchableOpacity onPress={func}>
                 <View style={styles.apagar}>
                     <ImageBackground
                         source={close}
@@ -28,7 +28,7 @@ export default function Tarefa(props) {
                 </View>
           </TouchableOpacity>
         </View>
-    );
+    )
 }
 
 const styles = StyleSheet.create({
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
         borderRadius: '10px',
         backgroundColor: 'blue',
         alignItems: 'center',
-        justifyContent: 'space-evenly',
+        justifyContent: 'space-between',
         width: '90%',
         margin: '10px'
     },

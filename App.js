@@ -1,32 +1,26 @@
 import { StatusBar } from 'expo-status-bar';
-import { ScrollView, StyleSheet, ImageBackground, TouchableOpacity,  Text, TextInput, View, SafeAreaView, Image } from 'react-native';
+import { StyleSheet, ImageBackground, TouchableOpacity,  Text, TextInput, View, SafeAreaView, Image } from 'react-native';
 import Tarefa from './componentes/Tarefa';
 import { useState } from 'react';
 import add from './assets/add.png'
 
 export default function App() {
 	const [tarefas, setTarefas] = useState([])
-	const [nome, setNome] = useState("Digite a tarefa: ")
+	const [nome, setNome] = useState("")
 
 	const adicionaTarefa = (nome) => {
-    	setTarefas(tarefas => [...tarefas, nome])
+		if (nome === '') return
+    	else {
+			setTarefas(tarefas => [...tarefas, {'desc': nome}])
+			setNome('')
+		}
 	}
 
 	const removeTarefa = (id) => {        
-		const deleted = tarefas.filter((t) => t.id !== id);
+		const deleted = [...tarefas];
+		deleted.splice(id, 1);
 		setTarefas(deleted);
-		console.log(t.id)
-		console.log(id)
 	}
-	/*const removeItem = (tarefas, nome) => {
-		let newArray = [...tarefas];
-		const index = newArray.findIndex((nome) => nome === "estudar");
-		if (index !== -1) {
-		 newArray.splice(index, 1);
-		  setTarefas(newArray);
-		}
-		kfsm
-	}*/
 
 
 	return (
@@ -44,6 +38,7 @@ export default function App() {
 							onChangeText={text => setNome(text)}
 							autocapitalize="none"
 							multiline='true'
+							placeholder='Digite a tarefa: '
 						/>
 						<TouchableOpacity onPress={() => adicionaTarefa(nome)}>
 							<View style={styles.adicionarImg}>
@@ -58,7 +53,7 @@ export default function App() {
 				</View>
 				<View style={styles.viewTarefas}>
 					{tarefas.map((t, i) => (
-					<Tarefa nome={t} id={i} key={i} func={removeTarefa}></Tarefa>
+					<Tarefa nome={t.desc} id={t.id} func={() => removeTarefa(i)}></Tarefa>
 					))}
 				</View>
 			</View>
@@ -73,13 +68,14 @@ const styles = StyleSheet.create({
     	alignItems: "center"
   	},
   	img: {
-    	height: 50,
-    	width: 50
+    	height: '60%',
+    	width: '60%'
  	},
  	viewTitulo: {
    		alignItems: 'center',
     	flexDirection: 'row',
     	justifyContent: 'center',
+		height: '10%'
 	},
 	viewTarefas: {
 		alignItems: 'center',
@@ -93,14 +89,15 @@ const styles = StyleSheet.create({
     	alignItems: 'center'
 	},
   	input: {
-    	width: '100%'
+    	width: '100%',
 	},
   	inputText: {
     	borderWidth:1, 
     	borderColor: '#000',
     	borderRadius: '10px',
     	width: "90%",
-    	height: '40px',
+		paddingHorizontal: 8,
+		paddingVertical: 4,
 	},
 	inputView: {
 		alignItems: 'center',
@@ -113,8 +110,8 @@ const styles = StyleSheet.create({
 		justifyContent: "center"
 	},
 	adicionarImg: {
-		height: '30px',
-		width: '30px',
+		height: '40px',
+		width: '40px',
 		margin: '10px'
 	}
 });
