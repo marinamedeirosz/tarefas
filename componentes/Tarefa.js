@@ -38,8 +38,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'blue',
         alignItems: 'center',
         justifyContent: 'space-between',
-        width: '90%',
-        margin: '10px'
+        width: '95%',
+        margin: '15px',
     },
     uncheckedText: {
         color: 'white',

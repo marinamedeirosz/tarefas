@@ -65,7 +65,7 @@ export default function App() {
 const styles = StyleSheet.create({
 	container: {
     	flex: 1,
-    	alignItems: "center"
+    	alignItems: "center",
   	},
   	img: {
     	height: '60%',
@@ -73,13 +73,13 @@ const styles = StyleSheet.create({
  	},
  	viewTitulo: {
    		alignItems: 'center',
-    	flexDirection: 'row',
+    	flexDirection: 'row', 
     	justifyContent: 'center',
 		height: '10%'
 	},
 	viewTarefas: {
 		alignItems: 'center',
-		backgroundColor: "#000" ,
+		backgroundColor: "#595C61" ,
 		width: '100%',
 		borderRadius: '10px'
 	},
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     	borderRadius: '10px',
     	width: "90%",
 		paddingHorizontal: 8,
-		paddingVertical: 4,
+		paddingVertical: 4
 	},
 	inputView: {
 		alignItems: 'center',
